@@ -1,0 +1,15 @@
+name: dart-frog
+version: "0.1.0"
+author: Christopher O'Brian <mobiletread@gmail.com>
+about: Execute common related tasks, called a plan, using a simple dsl.
+args:
+  - path:
+      required: true
+      takes_value: true
+      index: 1
+      help: "path to the plan to execute"
+  - args:
+      required: false
+      takes_value: true
+      index: 2
+      help: "arguments that the plan might need to use in order to execute"

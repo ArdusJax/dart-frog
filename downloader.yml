@@ -1,0 +1,14 @@
+---
+name: downloader
+version: 0.1.0
+os:
+  name: linux
+  flavor: debian
+apps:
+  - name: curl
+    version: 7.58.0
+    package: curl
+    manager: apt
+plan:
+  - curl -o example.txt http://www.example.com/
+  - ls
