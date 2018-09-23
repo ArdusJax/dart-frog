@@ -26,3 +26,32 @@ and it doens't need `nightly`.
 3. Run the binary giving the project file as an argument. 
    example: 
    `dart-frog project.yml`
+
+## Project File
+
+Project files that describe your execution, including:
+
+* Target OS
+* Applications
+* Package manager
+* Commands
+
+Example:
+```yaml
+---
+name: downloader
+version: 0.1.0
+os:
+  name: linux
+  flavor: debian
+apps:
+  - name: curl
+    version: 7.58.0
+    package: curl
+    manager: apt
+plan:
+  - curl -o example.txt http://www.example.com/
+  - ls
+  ```
+
+More examples can be found in the [examples](examples) directory of this repository.
