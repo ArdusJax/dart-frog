@@ -1,5 +1,6 @@
 #![feature(custom_attribute)]
 
+mod installer;
 mod parser;
 
 #[macro_use]
@@ -29,19 +30,13 @@ fn main() {
             Err(e) => println!("Error: { }", e.to_string()),
         }
     }
-
-    //let args = matches.value_of("args");
-    //match args {
-    //    Some(a) => println!("arguments provided{ }", a),
-    //    None => println!("no arguments were provided"),
-    //}
 }
 
 fn run(path: String) -> Result<String, Box<Error>> {
     let p = parse_plan(&path)?;
     let v: Project = serde_yaml::from_str(&p)?;
     println!(
-        "\u{1F3E0}  {}\n   {} {}\n",
+        "\u{1F3E0}{:>16}\n{:>8}{:2}\n",
         "Executing Plan".purple(),
         "File:".purple(),
         &path

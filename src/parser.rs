@@ -53,6 +53,11 @@ pub fn parse_plan(path: &String) -> Result<String, Box<Error>> {
 }
 
 impl Project {
+    //todo implement resolving the requirements
+    pub fn resolve_requirements(&self) -> Result<String, Box<Error>> {
+        Ok(String::from("all requirements have been gathered"))
+    }
+    // Execute the plan after the requirements have been gathered
     pub fn execute(&self) -> Result<String, Box<Error>> {
         let s = format!("{}\n", "plan executed successfully".green());
         for cmdline in &self.plan {
