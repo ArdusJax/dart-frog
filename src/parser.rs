@@ -44,7 +44,7 @@ pub struct Plan {
 
 // functions
 pub fn parse_plan(path: &String) -> Result<String, Box<Error>> {
-    let mut cf = File::open("downloader.yml").expect(&format!("{} file was not found", path));
+    let mut cf = File::open(path).expect(&format!("{} file was not found", path));
 
     let mut contents = String::new();
     cf.read_to_string(&mut contents)
