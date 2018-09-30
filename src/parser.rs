@@ -44,6 +44,7 @@ pub struct Plan {
 
 // functions
 pub fn parse_plan(path: &String) -> Result<String, Box<Error>> {
+    // todo: This should use an actual file path object, not a string
     let mut cf = File::open(path).expect(&format!("{} file was not found", path));
 
     let mut contents = String::new();
