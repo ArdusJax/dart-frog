@@ -2,7 +2,14 @@ extern crate serde;
 extern crate serde_json;
 extern crate serde_yaml;
 
+mod app;
+mod env;
+mod os;
+mod plan;
+
 use colored::*;
+use project::app::App;
+use project::os::OS;
 use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
@@ -15,30 +22,6 @@ pub struct Project {
     pub version: String,
     pub os: OS,
     pub apps: Vec<App>,
-    pub plan: Vec<String>,
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub struct OS {
-    pub name: String,
-    pub flavor: String,
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub struct App {
-    pub name: String,
-    pub version: String,
-    pub package: String,
-    pub manager: String,
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub struct Env {
-    pub name: String,
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub struct Plan {
     pub plan: Vec<String>,
 }
 
@@ -56,6 +39,20 @@ pub fn parse_plan(path: &String) -> Result<String, Box<Error>> {
 impl Project {
     //todo implement resolving the requirements
     pub fn resolve_requirements(&self) -> Result<String, Box<Error>> {
+        println!(
+            "\u{1F3E0}{:>24}\n\n{:<15}\n",
+            "resolving requirements".purple(),
+            "installing:".green(),
+        );
+        for app in &self.apps {
+            app.check();
+            println!(
+                "{:<2}{:<30}{:<15}",
+                "\u{25AB}",
+                app.name.yellow(),
+                "installed".blue()
+            );
+        }
         Ok(String::from("all requirements have been gathered"))
     }
     // Execute the plan after the requirements have been gathered

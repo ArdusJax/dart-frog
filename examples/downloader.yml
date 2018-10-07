@@ -9,6 +9,10 @@ apps:
     version: 7.58.0
     package: curl
     manager: apt
+  - name: awscli
+    version: 1.8.0
+    package: awscli 
+    manager: apt
 plan:
   - curl -o example.txt http://www.example.com/
   - ls

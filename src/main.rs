@@ -1,7 +1,6 @@
 #![feature(custom_attribute)]
 
-mod installer;
-mod parser;
+mod project;
 
 #[macro_use]
 extern crate clap;
@@ -9,6 +8,7 @@ extern crate colored;
 extern crate indicatif;
 #[macro_use]
 extern crate serde_derive;
+extern crate regex;
 extern crate serde;
 extern crate serde_json;
 extern crate serde_yaml;
@@ -17,7 +17,7 @@ extern crate yaml_rust;
 use clap::App;
 use colored::*;
 //use indicatif::{ProgressBar, ProgressStyle};
-use parser::{parse_plan, Project};
+use project::{parse_plan, Project};
 use std::error::Error;
 
 fn main() {
@@ -41,6 +41,8 @@ fn run(path: String) -> Result<String, Box<Error>> {
         "File:".purple(),
         &path
     );
+    let z = v.resolve_requirements()?;
+    println!("\n{}\n", z.green());
     return v.execute();
 }
 
