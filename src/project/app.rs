@@ -6,7 +6,7 @@ pub struct App {
     pub name: String,
     pub version: String,
     pub package: String,
-    pub manager: String,
+    pub manager: String, // this will move to it's own struct
 }
 
 //todo support more than one manager using an enum
@@ -26,5 +26,24 @@ impl App {
             _ => false,
         };
         output
+    }
+
+    pub fn install(&self) -> bool {
+        match self.manager.trim() {
+            "apt" => {
+                let o = Command::new("apt")
+                    .args(&["install", "-y", &self.package])
+                    .output()
+                    .expect("package manager failed to install");
+                println!("installing {}", &self.name);
+                println!("{}", &String::from_utf8_lossy(&o.stdout));
+                println!("{}", &String::from_utf8_lossy(&o.stderr));
+                true
+            }
+            _ => {
+                println!("Unable to install {}", &self.package);
+                false
+            }
+        }
     }
 }

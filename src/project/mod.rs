@@ -45,7 +45,9 @@ impl Project {
             "installing:".green(),
         );
         for app in &self.apps {
-            app.check();
+            if !app.check() {
+                app.install();
+            }
             println!(
                 "{:<2}{:<30}{:<15}",
                 "\u{25AB}",
