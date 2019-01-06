@@ -8,7 +8,6 @@ struct Manager {
 // Types of installers
 enum PackageManager {
     Apt(Manager),
-    Docker(Manager),
     Homebrew(Manager),
 }
 
@@ -29,7 +28,7 @@ impl PackageManager {
         PackageManager::Apt(Manager {
             name: String::from("apt"),
             version: String::from("1.6.3"),
-            command: String::from("apt"),
+            command: String::from("apt-get"),
         })
     }
     fn new_homebrew_manager() -> PackageManager {

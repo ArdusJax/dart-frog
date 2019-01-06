@@ -31,7 +31,7 @@ impl App {
     pub fn install(&self) -> bool {
         match self.manager.trim() {
             "apt" => {
-                let o = Command::new("apt")
+                let o = Command::new("apt-get")
                     .args(&["install", "-y", &self.package])
                     .output()
                     .expect("package manager failed to install");

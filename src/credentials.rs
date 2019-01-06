@@ -1,5 +1,5 @@
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct Credentials {
-    username: String
+    username: String,
     password: String
 }
