@@ -7,7 +7,7 @@ authors = ["Christopher O'Brian <mobiletread@gmail.com>"]
 clap = {version = "2.32.0",features = ["yaml"]}
 indicatif = "0.9.0"
 yaml-rust = "0.4.0"
-serde_yaml = "0.7.5"
+serde_yaml = "0.8.4"
 serde = "1.0.66"
 serde_derive = "1.0.70"
 serde_json = "1.0.22"
