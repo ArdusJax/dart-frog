@@ -6,7 +6,7 @@ authors = ["Christopher O'Brian <mobiletread@gmail.com>"]
 [dependencies]
 clap = {version = "2.32.0",features = ["yaml"]}
 indicatif = "0.9.0"
-yaml-rust = "0.4.0"
+yaml-rust = "0.4.1"
 serde_yaml = "0.7.5"
 serde = "1.0.66"
 serde_derive = "1.0.70"
